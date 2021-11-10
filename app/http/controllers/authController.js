@@ -40,9 +40,9 @@ function authController() {
             res.render('auth/register')
         },
         async postRegister(req, res) {
-         const { name, email, password }   = req.body
+         const { name, email, password , enrollment_id}   = req.body
          // Validate request 
-         if(!name || !email || !password) {
+         if(!name || !email || !password || !enrollment_id) {
              req.flash('error', 'All fields are required')
              req.flash('name', name)
              req.flash('email', email)
@@ -65,6 +65,7 @@ function authController() {
          const user = new User({
              name,
              email,
+             enrollment_id,
              password: hashedPassword
          })
 
